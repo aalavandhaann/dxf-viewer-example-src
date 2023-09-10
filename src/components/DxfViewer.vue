@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import {DxfViewer} from "dxf-viewer"
+// import {DxfViewer} from "dxf-viewer"
+import {DxfViewer} from "../dxf-viewer/src/DxfViewer"
 import * as three from "three"
 import DxfViewerWorker from "worker-loader!./DxfViewerWorker"
 

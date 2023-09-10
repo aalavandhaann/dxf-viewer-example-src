@@ -13,7 +13,8 @@
 
 <script>
 import DxfViewer from "@/components/DxfViewer"
-import {DxfViewer as _DxfViewer} from "dxf-viewer"
+// import {DxfViewer as _DxfViewer} from "dxf-viewer"
+import {DxfViewer as _DxfViewer} from "../dxf-viewer/src/DxfViewer"
 import Vue from "vue"
 import mainFont from "@/assets/fonts/Roboto-LightItalic.ttf"
 import aux1Font from "@/assets/fonts/NotoSansDisplay-SemiCondensedLightItalic.ttf"

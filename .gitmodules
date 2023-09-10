@@ -1,0 +1,3 @@
+[submodule "src/dxf-viewer"]
+	path = src/dxf-viewer
+	url = https://github.com/vagran/dxf-viewer.git
