@@ -11,8 +11,10 @@
         "vue": "^2.6.14"
     },
     "scripts": {
-        "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve --port 9001",
-        "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build --modern"
+        "serve-unix": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve --port 9001",
+        "build-unix": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build --modern",
+        "serve-win": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve --port 9001",
+        "build-win": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build --modern"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^4.5.15",

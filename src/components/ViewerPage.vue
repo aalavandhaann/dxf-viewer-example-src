@@ -2,8 +2,8 @@
     <q-page class="row items-stretch root">
         <div class="col relative-position">
             <slot></slot>
-            <DxfViewer ref="viewer" :dxfUrl="dxfUrl" :fonts="fonts"
-                       @dxf-loaded="_OnLoaded" @dxf-cleared="_OnCleared" @dxf-message="_OnMessage" />
+            <InteractiveDxfViewer ref="viewer" :dxfUrl="dxfUrl" :fonts="fonts"
+                       @dxf-loaded="_OnLoaded" @dxf-cleared="_OnCleared" @dxf-message="_OnMessage"  @dxf-pointerdown="_OnPointerDown"/>
         </div>
         <div class="col-auto layersCol">
             <LayersList :layers="layers" @toggleLayer="_OnToggleLayer" @toggleAll="_OnToggleAll"/>
@@ -12,9 +12,12 @@
 </template>
 
 <script>
-import DxfViewer from "@/components/DxfViewer"
+// import DxfViewer from "@/components/DxfViewer"
 // import {DxfViewer as _DxfViewer} from "dxf-viewer"
-import {DxfViewer as _DxfViewer} from "../dxf-viewer/src/DxfViewer"
+// import {DxfViewer as _DxfViewer} from "../dxf-viewer/src/DxfViewer"
+
+import InteractiveDxfViewer from "@/components/InteractiveDxfViewer"
+import {InteractiveDxfViewer as _InteractiveDxfViewer} from "../classes/InteractiveDxfViewer"
 import Vue from "vue"
 import mainFont from "@/assets/fonts/Roboto-LightItalic.ttf"
 import aux1Font from "@/assets/fonts/NotoSansDisplay-SemiCondensedLightItalic.ttf"
@@ -22,9 +25,10 @@ import aux2Font from "@/assets/fonts/HanaMinA.ttf"
 import aux3Font from "@/assets/fonts/NanumGothic-Regular.ttf"
 import LayersList from "@/components/LayersList"
 
+
 export default {
     name: "ViewerPage",
-    components: {LayersList, DxfViewer},
+    components: { LayersList, InteractiveDxfViewer },
 
     props: {
         dxfUrl: {
@@ -39,6 +43,9 @@ export default {
     },
 
     methods: {
+        _OnPointerDown(e, v){
+            // console.log('pointer down ', e, v)
+        },
         _OnLoaded() {
             const layers = this.$refs.viewer.GetViewer().GetLayers()
             layers.forEach(lyr => Vue.set(lyr, "isVisible", true))
