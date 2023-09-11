@@ -43,7 +43,8 @@ export default {
                     colorCorrection: true,
                     sceneOptions: {
                         wireframeMesh: false
-                    }
+                    },
+                    preserveDrawingBuffer: true
                 }
             }
         }

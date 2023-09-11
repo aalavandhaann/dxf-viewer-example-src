@@ -17,14 +17,6 @@
                     <q-btn dense flat label="URL" @click="urlDialog = true"/>
                 </template>
             </q-file>
-            <q-btn icon="help" label="About" class="q-ml-lg" @click="aboutDialog = true"></q-btn>
-            <q-space />
-            <q-btn icon="fab fa-github" color="primary" label="dxf-viewer on GitHub" no-caps
-                   class="q-mx-sm github" type="a"
-                   href="https://github.com/vagran/dxf-viewer" />
-            <q-btn icon="fab fa-github" color="primary" label="This example on GitHub" no-caps
-                   class="q-mx-sm github" type="a"
-                   href="https://github.com/vagran/dxf-viewer-example-src" />
         </q-toolbar>
     </q-header>
     <q-page-container>
@@ -46,7 +38,7 @@
                 </div>
                 <div class="col-auto q-mx-lg q-pb-lg">
                     <q-btn label="Load URL" @click="urlDialog = true"/>
-                </div>
+                </div>                
             </div>
         </ViewerPage>
     </q-page-container>

@@ -6,8 +6,9 @@
                        @dxf-loaded="_OnLoaded" @dxf-cleared="_OnCleared" @dxf-message="_OnMessage"  @dxf-pointerdown="_OnPointerDown"/>
         </div>
         <div class="col-auto layersCol">
+            <q-btn dense blue label="Extract Drawing" @click="_OnExtract"/>
             <LayersList :layers="layers" @toggleLayer="_OnToggleLayer" @toggleAll="_OnToggleAll"/>
-        </div>
+        </div>        
     </q-page>
 </template>
 
@@ -43,6 +44,45 @@ export default {
     },
 
     methods: {
+        _OnExtract(){
+            let result = this.$refs.viewer.GetViewer().ExtractDrawing();
+            let link;
+            let image;
+            let saveCanvas;
+            let saveContext;
+            
+            if(result.success){
+                link = document.createElement('a');
+                saveCanvas = document.createElement('canvas');
+                saveContext = saveCanvas.getContext("2d");
+                image = new Image();
+
+                image.onload = () =>{
+                    console.log(result.anchor, result.size);
+                    saveContext.drawImage(
+                        image, 
+                        result.anchor.x, 
+                        result.anchor.y, 
+                        result.size.x, 
+                        result.size.y, 
+                        0,
+                        0,
+                        result.anchor.x + result.size.x, 
+                        result.anchor.y + result.size.y,
+                        );
+                    link.setAttribute('href', result.image);
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('download', "extraction.png");
+                    link.click();       
+                }
+                
+                saveCanvas.width = result.size.x;
+                saveCanvas.height = result.size.y;
+                image.src = result.image;                         
+            }
+            
+            console.log(result);
+        },
         _OnPointerDown(e, v){
             // console.log('pointer down ', e, v)
         },
